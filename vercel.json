@@ -8,10 +8,6 @@
     ],
     "routes": [
       {
-        "src": "/(static|media)/(.*)",
-        "dest": "/static/$2"
-      },
-      {
         "src": "/(.*)",
         "dest": "studentMS/wsgi.py"
       }
