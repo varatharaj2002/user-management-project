@@ -1,0 +1,97 @@
+{% extends "home.html" %} 
+{% block main %}
+
+<div class="login-container">
+  <div class="login-box">
+    {% for user in users %}
+    {% endfor %}
+    <h2>Add User</h2>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          required
+          placeholder="Enter name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="Enter email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="birthday">Date of Birth:</label>
+        <input
+          type="date"
+          id="birthday"
+          name="birthday"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input
+          type="number"
+          id="age"
+          name="age"
+          required
+          placeholder="Enter age"
+        />
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input
+          type="number"
+          id="phoneNumber"
+          name="phoneNumber"
+          required
+          placeholder="Enter phone number"
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <div class="dis">
+            <div class="off">
+                <input type="radio" id="male" name="gender" value="male" required />
+                <label for="male">Male</label>
+            </div>
+            <div class="off">
+                <input type="radio" id="female" name="gender" value="female" required />
+                <label for="female">Female</label>
+            </div>
+        </div>
+      </div>
+      {% comment %} <div class="form-group">
+        <label for="degree">Choose a Degree:</label>
+        <select name="degree" id="degree" required>
+          <option value="">Select Degree</option>
+          <option value="BE">BE</option>
+          <option value="B.Tech">B.Tech</option>
+        </select>
+      </div> {% endcomment %}
+      {% comment %} <div class="form-group">
+        <label for="course">Course:</label>
+        <input
+          type="text"
+          id="course"
+          name="course"
+          required
+          placeholder="Enter Course"
+        />
+      </div> {% endcomment %}
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    {% comment %} <a href="/students" class="register-btn">Students</a> {% endcomment %}
+  </div>
+</div>
+{% endblock %}

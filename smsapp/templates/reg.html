@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register Page</title>
+    <link rel="stylesheet" href="{% static 'css/reg.css'%}">
+</head>
+
+<body>
+    <div class='bg'>
+        <div class="container">
+
+            <h2>Register</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="error">
+                    {% if user%}
+                    {{message}}
+                    {% endif %}
+                </div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <div class="error">
+                    {% if user%}
+                    {{usernameerror}}
+                {% endif %}
+                </div>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <div class="error">
+                    {% if user%}
+                    {{passwordError}}
+                {% endif %}
+                </div>
+                <label for="confirmpassword">Confirm Password:</label>
+                <input type="password" id="confirmpassword" name="confirmpassword" required>
+
+                <button type="submit" class="text-info btn">register</button>
+                <!-- <a href="{% url 'reg'%}" class="text-info btn">Register</a> -->
+               <a href="{% url 'login'%}" class="text-info btn">Login</a> 
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

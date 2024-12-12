@@ -1,0 +1,20 @@
+{
+    "builds": [
+      {
+        "src": "studentMS/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.10.7" }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(static|media)/(.*)",
+        "dest": "/static/$2"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "studentMS/wsgi.py"
+      }
+    ]
+  }
+  

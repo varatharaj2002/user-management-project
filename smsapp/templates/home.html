@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script src="../static/js/script.js" defer></script>
+  </head>
+  <body>
+    
+    <div class="dashboard">
+        <div class="sidebar">
+            <h2>Dashboard</h2>
+            <ul>
+                <li class="{% if request.path == '/home/' %} active {% endif %}">
+                    <a href="{% url 'home' %}" ><i class="fa fa-home icon" style="font-size:24px"></i>
+                        Home</a>
+                </li>
+                <li class="{% if request.path == '/students/' %} active {% endif %}">
+                    <a href="{% url 'students' %}" ><i class="fa fa-users icon" aria-hidden="true"style="font-size:24px"></i>
+                        User Data</a>
+                </li>
+                
+                <li class="{% if request.path == '/addstudent/' %} active {% endif %}">
+                    <a href="{% url 'addstudent' %}" ><i class="fa fa-plus icon" aria-hidden="true"style="font-size:24px"></i>
+                        Add User</a>
+                </li>
+                
+                <li class="{% if request.path == '/logout/' %} active {% endif %}">
+                    <a href="{% url 'logout' %}" ><i class="fa fa-sign-out icon" aria-hidden="true"style="font-size:24px"></i>
+                        Logout</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="main-content">
+            <div class="header">
+                <span>Welcome,{{ user.username }}</span>  
+            </div>
+            {% block main %}
+            <div id="home" class="content-section">
+                <h1 class="centers">User Data</h1>
+            </div>
+            
+            <section class="aboutpage-section aboutpage-student-details">
+                <h2 class="aboutpage-subtitle">User Details</h2>
+                <div class="aboutpage-student-card">
+                    {% for student in students %}
+                    <div class="aboutpage-student">
+                        <p><strong>Username:</strong> {{ student.username }}</p>
+                        <p><strong>Email:</strong> {{ student.email }}</p>
+                        <p><strong>Birthday:</strong> {{ student.birthday }}</p>
+                        <p><strong>Age:</strong> {{ student.age }}</p>
+                        <p><strong>Phone Number:</strong> {{ student.phoneNumber }}</p>
+                        <p><strong>Gender:</strong> {{ student.gender }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>            
+        </div>
+        {% endblock %}
+    </div>
+  </body>
+</html>

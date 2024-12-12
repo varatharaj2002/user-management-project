@@ -1,0 +1,104 @@
+{% extends "home.html" %} 
+{% block main %}
+
+<div class="login-container">
+  <div class="login-box">
+    <h2>Edit Student</h2>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Student Name:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          required
+          placeholder="Enter name"
+          value = "{{student.username}}"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="Enter email"
+          value = "{{student.email}}"
+        />
+      </div>
+      <div class="form-group">
+        <label for="birthday">Date of Birth:</label>
+        <input
+          type="date"
+          id="birthday"
+          name="birthday"
+          required
+          value = "{{student.birthday}}"
+        />
+      </div>
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input
+          type="number"
+          id="age"
+          name="age"
+          required
+          placeholder="Enter age"
+          value = "{{student.age}}"
+        />
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input
+          type="number"
+          id="phoneNumber"
+          name="phoneNumber"
+          required
+          placeholder="Enter phone number"
+          value = "{{student.phoneNumber}}"
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <div class="dis">
+            <div class="off">
+                <input type="radio" id="male" name="gender" value="male" 
+                       {% if student.gender == "male" %}checked{% endif %} required />
+                <label for="male">Male</label>
+            </div>
+            <div class="off">
+                <input type="radio" id="female" name="gender" value="female" 
+                       {% if student.gender == "female" %}checked{% endif %} required />
+                <label for="female">Female</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="degree">Choose a Degree:</label>
+        <select name="degree" id="degree" required>
+            <option value="">Select Degree</option>
+            <option value="BE" {% if student.degree == "BE" %}selected{% endif %}>BE</option>
+            <option value="B.Tech" {% if student.degree == "B.Tech" %}selected{% endif %}>B.Tech</option>
+        </select>
+    </div>
+    
+      <div class="form-group">
+        <label for="course">Course:</label>
+        <input
+          type="text"
+          id="course"
+          name="course"
+          required
+          placeholder="Enter Course"
+          value = "{{student.course}}"
+        />
+      </div>
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    {% comment %} <a href="/students" class="register-btn">Students</a> {% endcomment %}
+  </div>
+</div>
+{% endblock %}

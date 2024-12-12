@@ -1,0 +1,46 @@
+{% extends "home.html" %} 
+{% block main %}
+  <div id="home" class="content-section">
+  </div>
+  <section class="action-checkbox">
+    <h2 class="center">User Details</h2>
+    <div class="mar">
+      <a href="{% url 'addstudent' %}" class="addstudent">Add User</a>
+    </div>
+    <div class="flex">
+
+    {% for student in students %}
+    
+      <div class="student-card">
+        <p><strong>Username:</strong> {{ student.username }}</p>
+        <p><strong>Email:</strong> {{ student.email }}</p>
+        <p><strong>Birthday:</strong> {{ student.birthday }}</p>
+        <p><strong>Age:</strong> {{ student.age }}</p>
+        <p><strong>Phone Number:</strong> {{ student.phoneNumber }}</p>
+        <p><strong>Gender:</strong> {{ student.gender }}</p>
+        {% comment %} <p><strong>Degree:</strong> {{ student.degree }}</p> {% endcomment %}
+        {% comment %} <p><strong>Course:</strong> {{ student.course }}</p> {% endcomment %}
+      
+        <div class="btns">
+          <button class="btn"><a href="{% url 'editStudents' student.docId %}" >Edit</a></button>
+          <button class="btn deleteStudentBtn">Delete</button> 
+        </div>
+         {% comment %} hidd {% endcomment %}
+        <div class="popup studentDeleteModal">
+            {% csrf_token %}
+            <div class="popup-content">
+              <p>Are you sure you want to delete the user Data?</p>
+              <button type="submit"><a href="{% url 'deleteStudent' student.docId %}" class="confirm">Yes</a></button>
+              <button type="button" onclick="closeStudentPopup(event)"  class="confirm">No</button>
+            </div>
+        </div>
+        {% comment %} hidd {% endcomment %}
+      </div>
+    {% empty %}
+    <p>No User's available.</p>
+    {% endfor %}
+  </div>
+   
+    
+  </section>
+{% endblock %}
